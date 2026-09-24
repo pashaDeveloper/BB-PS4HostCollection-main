@@ -1,0 +1,12 @@
+{
+  "name": "technosara-ps4-host",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/prepare.cjs && serve .site --listen tcp://0.0.0.0:3000 --no-clipboard",
+    "dev": "npm start"
+  },
+  "dependencies": {
+    "serve": "14.2.6"
+  }
+}
