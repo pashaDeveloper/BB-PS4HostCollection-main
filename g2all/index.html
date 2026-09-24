@@ -2,10 +2,223 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GamerHack 7.00-13.52 - bazi bazar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هاست کالکشن تکنوسرا</title>
 <link rel="stylesheet" href="style.css">
+<style>
+
+html {
+    min-height: 100%;
+    background: #020932;
+    overflow: auto;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: radial-gradient(ellipse at 18% 0%, #0649bd 0%, #052784 38%, #03145a 68%, #020932 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+* { box-sizing: border-box; }
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .ps-wave {
+            position: absolute;
+            top: -12%;
+            left: -12%;
+            width: 124%;
+            height: 124%;
+            animation: wave-drift 22s ease-in-out infinite alternate;
+            transform-origin: 50% 50%;
+        }
+
+        .ps-wave-back {
+            opacity: 0.65;
+            animation-duration: 29s;
+            animation-delay: -12s;
+            animation-direction: alternate-reverse;
+        }
+
+        .ps-wave-front {
+            animation-duration: 19s;
+            animation-delay: -6s;
+        }
+
+        @keyframes wave-drift {
+            from { transform: translate(-2%, 2%) rotate(-3deg) scaleY(0.94); }
+            to { transform: translate(2%, -3%) rotate(3deg) scaleY(1.08); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ps-wave { animation: none; }
+        }
+
+
+.host-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.host-title {
+    color: #e2f5ff;
+    font-size: 36px;
+    margin: 0 0 24px;
+    text-shadow: 0 2px 16px rgba(0, 10, 45, 0.45);
+}
+#msgs {
+    width: 100%;
+    margin: auto 0;
+    padding: 48px 16px;
+    font-size: 26px;
+    line-height: 1.8;
+    overflow-wrap: break-word;
+}
+.host-credits { color: #c1dcf6; font-size: 14px; margin: 20px 0; }
+        .store-contact {
+            width: 100%;
+            max-width: 800px;
+            margin: 0.5rem auto 0;
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(145deg, rgba(12, 57, 126, 0.82), rgba(3, 22, 69, 0.9));
+            border: 1px solid rgba(109, 191, 255, 0.38);
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 8, 40, 0.2);
+        }
+
+        .store-contact h2 {
+            color: #e2f5ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .store-address {
+            color: #c1dcf6;
+            font-style: normal;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+
+        .store-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .store-link {
+            display: inline-block;
+            margin: 0.35rem;
+            padding: 0.65rem 1rem;
+            max-width: 100%;
+            color: #b9edff;
+            background: rgba(8, 70, 143, 0.5);
+            border: 1px solid rgba(109, 191, 255, 0.4);
+            border-radius: 10px;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .store-link span {
+            display: inline-block;
+            color: #ffffff;
+            margin-inline-start: 0.4rem;
+        }
+
+        .store-link:hover,
+        .store-link:focus {
+            background: #095297;
+            border-color: #88e5ff;
+            outline: 2px solid #88e5ff;
+            outline-offset: 3px;
+        }
+
+
+@media (max-width: 600px) {
+    .host-content { padding: 32px 16px 24px; }
+    .host-title { font-size: 28px; }
+    #msgs { font-size: 21px; padding: 32px 8px; }
+    .store-contact { padding: 20px 12px; }
+}
+</style>
 </head>
 <body>
+    <div class="bg-decoration" aria-hidden="true">
+        <svg class="ps-wave ps-wave-back" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-back-fill" x1="0" y1="0" x2="0.2" y2="1">
+                    <stop offset="0" stop-color="#117aff" stop-opacity="0.65"/>
+                    <stop offset="0.45" stop-color="#0649f5" stop-opacity="0.3"/>
+                    <stop offset="1" stop-color="#073acb" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="wave-back-edge">
+                    <stop stop-color="#1787ff" stop-opacity="0"/>
+                    <stop offset="0.65" stop-color="#279bff" stop-opacity="0.65"/>
+                    <stop offset="1" stop-color="#155aff" stop-opacity="0.2"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 450 C220 285 390 440 660 310 S1050 125 1360 115 L1360 305 C1000 305 650 505 320 580 S70 625-80 650Z" fill="url(#wave-back-fill)"/>
+            <path d="M-80 450 C220 285 390 440 660 310 S1050 125 1360 115" fill="none" stroke="url(#wave-back-edge)" stroke-width="1.5"/>
+        </svg>
+        <svg class="ps-wave" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-main-fill" x1="0" y1="0" x2="0.12" y2="1">
+                    <stop stop-color="#0872ff" stop-opacity="0.1"/>
+                    <stop offset="0.48" stop-color="#0755ff" stop-opacity="0.38"/>
+                    <stop offset="0.76" stop-color="#087fff" stop-opacity="0.6"/>
+                    <stop offset="1" stop-color="#35dfff" stop-opacity="0.08"/>
+                </linearGradient>
+                <linearGradient id="wave-main-edge">
+                    <stop stop-color="#158bff" stop-opacity="0.2"/>
+                    <stop offset="0.43" stop-color="#67f4ff"/>
+                    <stop offset="0.7" stop-color="#28bbff" stop-opacity="0.85"/>
+                    <stop offset="1" stop-color="#0960ff" stop-opacity="0.3"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35 L1360 210 C1070 85 955 175 800 315 S580 505 380 465 S90 470-80 600Z" fill="url(#wave-main-fill)"/>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35" fill="none" stroke="url(#wave-main-edge)" stroke-width="7" opacity="0.08"/>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35" fill="none" stroke="url(#wave-main-edge)" stroke-width="1.6"/>
+        </svg>
+        <svg class="ps-wave ps-wave-front" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-front-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop stop-color="#19cfff" stop-opacity="0.5"/>
+                    <stop offset="0.25" stop-color="#0869ff" stop-opacity="0.35"/>
+                    <stop offset="1" stop-color="#0840e8" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="wave-front-edge">
+                    <stop stop-color="#c0faff" stop-opacity="0.9"/>
+                    <stop offset="0.22" stop-color="#3de8ff"/>
+                    <stop offset="0.6" stop-color="#4cbbff" stop-opacity="0.3"/>
+                    <stop offset="1" stop-color="#1664ff" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250 L1360 320 C1050 200 850 340 635 460 S230 405-80 420Z" fill="url(#wave-front-fill)"/>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250" fill="none" stroke="url(#wave-front-edge)" stroke-width="6" opacity="0.12"/>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250" fill="none" stroke="url(#wave-front-edge)" stroke-width="1.8"/>
+        </svg>
+    </div>
+
+
 <script>
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
@@ -94,10 +307,21 @@ if (!isPS4) {
     }
 }
 </script>
-<h1>هاست کالکشن بازی بازار - گیمرهک</h1>
-<hr>
-<br>
-<h1 id=msgs style="font-size: 30px;margin-top: 77px;margin-bottom: 455px;">در حال فعالسازی گلدهن...لطفا شکیبا باشید</h1>
-<h1 style="margin-top: 43px;">Special Thanks to: GamerHack</h1>
+<main class="host-content">
+<h1 class="host-title" dir="rtl" lang="fa">هاست کالکشن تکنوسرا</h1>
+<h2 id="msgs" aria-live="polite" dir="auto">در حال فعالسازی گلدهن...لطفا شکیبا باشید</h2>
+        <section class="store-contact" dir="rtl" lang="fa" aria-labelledby="store-contact-title">
+            <h2 id="store-contact-title">تماس با فروشگاه تکنوسارا</h2>
+            <address class="store-address">
+                ارومیه، فلکه خیام، پاساژ شهریار، طبقه همکف<br>
+                انتهای راهروی چپ، مغازه آخری، پلاک ۲۰۱
+            </address>
+            <div class="store-links">
+                <a class="store-link" href="tel:09392640650">تماس با فروشگاه <span dir="ltr">09392640650</span></a>
+                <a class="store-link" href="https://technosara.com/" target="_blank" rel="noopener noreferrer">وب‌سایت فروشگاه <span dir="ltr">Technosara.com</span></a>
+            </div>
+        </section>
+<p class="host-credits">Special Thanks to: GamerHack</p>
+</main>
 </body>
 </html>
