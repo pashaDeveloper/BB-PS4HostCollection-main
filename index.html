@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>هاست ps4 فروشگاه تکنوسرا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: radial-gradient(ellipse at 18% 0%, #0649bd 0%, #052784 38%, #03145a 68%, #020932 100%);
+            background-attachment: fixed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .ps-wave {
+            position: absolute;
+            top: -12%;
+            left: -12%;
+            width: 124%;
+            height: 124%;
+            animation: wave-drift 22s ease-in-out infinite alternate;
+            transform-origin: 50% 50%;
+        }
+
+        .ps-wave-back {
+            opacity: 0.65;
+            animation-duration: 29s;
+            animation-delay: -12s;
+            animation-direction: alternate-reverse;
+        }
+
+        .ps-wave-front {
+            animation-duration: 19s;
+            animation-delay: -6s;
+        }
+
+        @keyframes wave-drift {
+            from { transform: translate(-2%, 2%) rotate(-3deg) scaleY(0.94); }
+            to { transform: translate(2%, -3%) rotate(3deg) scaleY(1.08); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ps-wave { animation: none; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 2rem;
+            padding-bottom: 100px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #c5eeff 55%, #65caff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #c1dcf6;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #c1dcf6;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .version-selection {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            margin: 2rem 0 1.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .version-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .version-card {
+            flex: 0 0 calc(33.333333% - 1.5rem);
+            min-width: 0;
+            margin: 0.75rem;
+            background: linear-gradient(145deg, rgba(12, 57, 126, 0.82), rgba(3, 22, 69, 0.9));
+            box-shadow: 0 12px 30px rgba(0, 8, 40, 0.28), inset 0 1px 0 rgba(200, 238, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(109, 191, 255, 0.38);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .version-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        /* Shared PlayStation-blue treatment for every firmware card. */
+        .version-card::before {
+            background: linear-gradient(90deg, rgba(28, 127, 255, 0), #39cfff, rgba(28, 127, 255, 0));
+            opacity: 0.7;
+        }
+
+        .version-card:hover,
+        .version-card:focus {
+            background: linear-gradient(145deg, rgba(17, 87, 174, 0.88), rgba(3, 27, 82, 0.94));
+            border-color: #88e5ff;
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(0, 8, 40, 0.4), 0 0 24px rgba(39, 177, 255, 0.25), inset 0 1px 0 rgba(220, 248, 255, 0.18);
+            outline: 2px solid rgba(171, 238, 255, 0.85);
+            outline-offset: 3px;
+        }
+
+        .version-card:active {
+            transform: translateY(-1px);
+        }
+
+        .version-badge {
+            background: linear-gradient(135deg, #0751ad, #086bba);
+            border: 1px solid rgba(139, 220, 255, 0.45);
+            box-shadow: inset 0 1px 0 rgba(224, 248, 255, 0.12);
+            display: inline-block;
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .version-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .version-number {
+            font-size: 1rem;
+            color: #7ee5ff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .version-description {
+            font-size: 0.9rem;
+            color: #c1dcf6;
+            line-height: 1.5;
+        }
+
+        /* NodePlay Banner */
+        .nodeplay-banner {
+            max-width: 800px;
+            width: 100%;
+            margin-top: 1rem;
+            background: linear-gradient(135deg, rgba(9, 55, 122, 0.85), rgba(3, 23, 71, 0.92));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(109, 191, 255, 0.38);
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nodeplay-banner:hover,
+        .nodeplay-banner:focus {
+            border-color: #88e5ff;
+            outline: 2px solid rgba(171, 238, 255, 0.85);
+            outline-offset: 3px;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 8, 40, 0.35), 0 0 24px rgba(39, 177, 255, 0.2);
+        }
+
+        .nodeplay-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0865cd, #76e4ff, #0865cd);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .nodeplay-banner .banner-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .nodeplay-banner .banner-brand {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #b9edff 50%, #55baff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .nodeplay-banner .banner-slogan {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .nodeplay-banner .glow-orb {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+
+        .nodeplay-banner .glow-orb.orb-1 {
+            background: #167bff;
+            top: -50px;
+            left: -50px;
+        }
+
+        .nodeplay-banner .glow-orb.orb-2 {
+            background: #20c5ff;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        /* Credits */
+        .credits {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(2, 14, 49, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(109, 191, 255, 0.25);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1rem;
+            z-index: 10;
+        }
+
+        .credits-line {
+            margin: 0.25rem 0;
+        }
+
+        .nodeplay-link {
+            color: #8edcff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nodeplay-link:hover {
+            color: #dcf6ff;
+        }
+
+        .credit-label {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .credit-link {
+            color: #8edcff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .credit-link:hover {
+            color: #dcf6ff;
+        }
+
+        .telegram-link {
+            color: #8edcff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .telegram-link:hover {
+            color: #dcf6ff;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .version-card, .nodeplay-banner { transition: none; }
+            .version-card:hover, .version-card:focus,
+            .nodeplay-banner:hover, .nodeplay-banner:focus { transform: none; }
+            .nodeplay-banner::before { animation: none; }
+        }
+
+        .store-contact {
+            width: 100%;
+            max-width: 800px;
+            margin: 0.5rem auto 0;
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(145deg, rgba(12, 57, 126, 0.82), rgba(3, 22, 69, 0.9));
+            border: 1px solid rgba(109, 191, 255, 0.38);
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0, 8, 40, 0.2);
+        }
+
+        .store-contact h2 {
+            color: #e2f5ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .store-address {
+            color: #c1dcf6;
+            font-style: normal;
+            font-size: 0.95rem;
+            line-height: 2;
+        }
+
+        .store-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .store-link {
+            display: inline-block;
+            margin: 0.35rem;
+            padding: 0.65rem 1rem;
+            max-width: 100%;
+            color: #b9edff;
+            background: rgba(8, 70, 143, 0.5);
+            border: 1px solid rgba(109, 191, 255, 0.4);
+            border-radius: 10px;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .store-link span {
+            display: inline-block;
+            color: #ffffff;
+            margin-inline-start: 0.4rem;
+        }
+
+        .store-link:hover,
+        .store-link:focus {
+            background: #095297;
+            border-color: #88e5ff;
+            outline: 2px solid #88e5ff;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 1100px) {
+            .version-card {
+                flex-basis: calc(50% - 1.5rem);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .version-card {
+                flex-basis: calc(100% - 1.5rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            html,
+            body {
+                overflow-y: auto;
+                overflow-x: hidden;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+                padding-bottom: 120px;
+                padding-top: 2rem;
+                justify-content: flex-start;
+                min-height: auto;
+            }
+
+            .section-title {
+                margin: 1rem 0;
+            }
+
+            .version-grid {
+                margin: 1rem 0;
+            }
+
+            .version-card {
+                padding: 1.5rem;
+            }
+
+            .nodeplay-banner {
+                padding: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .nodeplay-banner .banner-brand {
+                font-size: 1.8rem;
+            }
+
+            .nodeplay-banner .banner-title {
+                font-size: 0.85rem;
+            }
+
+            .nodeplay-banner .banner-slogan {
+                font-size: 0.75rem;
+            }
+
+            .credits {
+                position: relative;
+                margin-top: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-decoration" aria-hidden="true">
+        <svg class="ps-wave ps-wave-back" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-back-fill" x1="0" y1="0" x2="0.2" y2="1">
+                    <stop offset="0" stop-color="#117aff" stop-opacity="0.65"/>
+                    <stop offset="0.45" stop-color="#0649f5" stop-opacity="0.3"/>
+                    <stop offset="1" stop-color="#073acb" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="wave-back-edge">
+                    <stop stop-color="#1787ff" stop-opacity="0"/>
+                    <stop offset="0.65" stop-color="#279bff" stop-opacity="0.65"/>
+                    <stop offset="1" stop-color="#155aff" stop-opacity="0.2"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 450 C220 285 390 440 660 310 S1050 125 1360 115 L1360 305 C1000 305 650 505 320 580 S70 625-80 650Z" fill="url(#wave-back-fill)"/>
+            <path d="M-80 450 C220 285 390 440 660 310 S1050 125 1360 115" fill="none" stroke="url(#wave-back-edge)" stroke-width="1.5"/>
+        </svg>
+        <svg class="ps-wave" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-main-fill" x1="0" y1="0" x2="0.12" y2="1">
+                    <stop stop-color="#0872ff" stop-opacity="0.1"/>
+                    <stop offset="0.48" stop-color="#0755ff" stop-opacity="0.38"/>
+                    <stop offset="0.76" stop-color="#087fff" stop-opacity="0.6"/>
+                    <stop offset="1" stop-color="#35dfff" stop-opacity="0.08"/>
+                </linearGradient>
+                <linearGradient id="wave-main-edge">
+                    <stop stop-color="#158bff" stop-opacity="0.2"/>
+                    <stop offset="0.43" stop-color="#67f4ff"/>
+                    <stop offset="0.7" stop-color="#28bbff" stop-opacity="0.85"/>
+                    <stop offset="1" stop-color="#0960ff" stop-opacity="0.3"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35 L1360 210 C1070 85 955 175 800 315 S580 505 380 465 S90 470-80 600Z" fill="url(#wave-main-fill)"/>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35" fill="none" stroke="url(#wave-main-edge)" stroke-width="7" opacity="0.08"/>
+            <path d="M-80 600 C180 535 370 490 570 400 S930 95 1360 35" fill="none" stroke="url(#wave-main-edge)" stroke-width="1.6"/>
+        </svg>
+        <svg class="ps-wave ps-wave-front" viewBox="0 0 1280 720" preserveAspectRatio="none" focusable="false">
+            <defs>
+                <linearGradient id="wave-front-fill" x1="0" y1="0" x2="0" y2="1">
+                    <stop stop-color="#19cfff" stop-opacity="0.5"/>
+                    <stop offset="0.25" stop-color="#0869ff" stop-opacity="0.35"/>
+                    <stop offset="1" stop-color="#0840e8" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="wave-front-edge">
+                    <stop stop-color="#c0faff" stop-opacity="0.9"/>
+                    <stop offset="0.22" stop-color="#3de8ff"/>
+                    <stop offset="0.6" stop-color="#4cbbff" stop-opacity="0.3"/>
+                    <stop offset="1" stop-color="#1664ff" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250 L1360 320 C1050 200 850 340 635 460 S230 405-80 420Z" fill="url(#wave-front-fill)"/>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250" fill="none" stroke="url(#wave-front-edge)" stroke-width="6" opacity="0.12"/>
+            <path d="M-80 355 C170 295 350 425 540 440 S850 230 1060 190 S1250 210 1360 250" fill="none" stroke="url(#wave-front-edge)" stroke-width="1.8"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="header-section">
+            <h1 class="main-title">هاست کالکشن فروشگاه  تکنوسرا</h1>
+            <!-- <p class="subtitle">Author: BlackArch</p> 
+            <p class="description">برای شروع کار با هاست، نسخهٔ فریمور پلی‌استیشن ۴ خود را انتخاب کنید</p> -->
+        </div>
+
+        <div class="version-selection">
+            <div class="section-title">نسخهٔ فریمور خود را انتخاب کنید</div>
+            <div class="version-grid">
+                <div class="version-card fw-505" onclick="selectFirmware('505')" tabindex="0" data-version="505">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">5.05 & 6.72</div>
+                    <div class="version-number">Pulse</div>
+                    <div class="version-description">
+                        
+                    </div>
+                </div>
+
+                <div class="version-card fw-672" onclick="selectFirmware('900f')" tabindex="0" data-version="672">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">9.xx</div>
+                    <div class="version-number">Feyzee</div>
+                    <div class="version-description">
+                     بازهٔ فریمور 7.02 تا 9.60    
+                    </div>
+                </div>
+
+                <!-- <div class="version-card fw-700" onclick="selectFirmware('700')" tabindex="0" data-version="700">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">7.xx-8.xx</div>
+                    <div class="version-number">Pulse</div>
+                    <div class="version-description">
+                        بازهٔ فریمور 7.02 تا 8.52
+                    </div>
+                </div>
+
+                 <div class="version-card fw-900" onclick="selectFirmware('900psx8')" tabindex="0" data-version="900">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">9.xx</div>
+                    <div class="version-number">Pulse</div>
+                    <div class="version-description">
+                        بازهٔ فریمور 9.00 تا 9.60
+                    </div>
+                </div> -->
+                
+                <div class="version-card fw-700" onclick="selectFirmware('713gh')" tabindex="0" data-version="900">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">7.00-13.52</div>
+                    <div class="version-number">GamerHack</div>
+                    <div class="version-description">
+                    بازهٔ فریمور 7.00 تا 13.52
+                    </div>
+                </div>
+                <!--
+                 <div class="version-card fw-900" " onclick="selectFirmware('13xxgr')" tabindex="0" data-version="900">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">13.xx</div>
+                    <div class="version-number">Gameraw</div>
+                    <div class="version-description">
+                        بازهٔ فریمور 13.02 تا 13.52
+                    </div>
+                </div>
+                
+                <div class="version-card fw-505" onclick="selectFirmware('gameraw')" tabindex="0" data-version="900">
+                    <div class="version-badge">فریمور</div>
+                    <div class="version-title">11.50-13.00</div>
+                    <div class="version-number">Game Raw</div>
+                    <div class="version-description">
+                    بازهٔ فریمور 11.50 تا 13.00
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+
+        <section class="store-contact" dir="rtl" lang="fa" aria-labelledby="store-contact-title">
+            <h2 id="store-contact-title">تماس با فروشگاه تکنوسارا</h2>
+            <address class="store-address">
+                ارومیه، فلکه خیام، پاساژ شهریار، طبقه همکف<br>
+                انتهای راهروی چپ، مغازه آخری، پلاک ۲۰۱
+            </address>
+            <div class="store-links">
+                <a class="store-link" href="tel:09392640650">تماس با فروشگاه <span dir="ltr">09392640650</span></a>
+                <a class="store-link" href="https://technosara.com/" target="_blank" rel="noopener noreferrer">وب‌سایت فروشگاه <span dir="ltr">Technosara.com</span></a>
+            </div>
+        </section>
+
+        <!-- NodePlay Banner 
+        <a href="https://nodeplay.net/" target="_blank" class="nodeplay-banner">
+            <div class="glow-orb orb-1"></div>
+            <div class="glow-orb orb-2"></div>
+            <div class="banner-title">Premium Game Servers</div>
+            <div class="banner-brand">NodePlay</div>
+            <div class="banner-slogan">Powered to Perfection. Played to Win.</div>
+        </a>
+    -->
+    </div>
+    <!--
+    <div class="credits">
+        <div class="credits-line">
+            <span class="credit-label">Premium Game Servers -</span>
+            <a href="https://nodeplay.net/" class="nodeplay-link">NodePlay</a>
+        </div>
+        <div class="credits-line">
+            <span class="credit-label">Author:</span>
+            <a href="https://t.me/sudoBlackArch" class="telegram-link">BlackArch</a>
+            <span style="margin: 0 1rem;">•</span>
+            <span class="credit-label">Telegram:</span>
+            <a href="https://t.me/PlayStation_Pulse" class="credit-link">PlayStation Pulse</a>
+        </div>
+    </div> -->
+
+    <script>
+        function selectFirmware(fw) {
+            switch (fw) {
+                case '505':
+                    window.location.href = '505n672/version-selector.html';
+                    break;
+                case '900f':
+                    window.location.href = '900f/index.html';
+                    break;
+                case '713gh':
+                    window.location.href = 'g2all/index.html';
+                    break;  
+            }
+        }
+
+        // Gamepad / D-pad navigation for PS4 browser
+        // PS4 browser moves a visible cursor with D-pad arrows.
+        // We must NOT call event.preventDefault() on arrow keys,
+        // otherwise the cursor stays in place while only CSS :focus moves.
+        // Instead we let the browser handle cursor movement natively
+        // and track which card has focus via the focus event.
+
+        var currentFocus = -1;
+        var cards = document.querySelectorAll('.version-card');
+
+        // Track focus changes — fires when PS4 cursor lands on a card
+        for (var i = 0; i < cards.length; i++) {
+            (function (index) {
+                cards[index].addEventListener('focus', function () {
+                    currentFocus = index;
+                });
+
+                // Handle Enter / X-button on focused card
+                cards[index].addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.keyCode === 13 || e.key === ' ' || e.keyCode === 32) {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            })(i);
+        }
+
+        // Global Enter/Space fallback (in case focus is not on a card)
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13 || e.key === ' ' || e.keyCode === 32) {
+                if (currentFocus >= 0 && currentFocus < cards.length) {
+                    e.preventDefault();
+                    cards[currentFocus].click();
+                }
+            }
+        });
+
+        // Add click animation effect
+        for (var j = 0; j < cards.length; j++) {
+            (function (card) {
+                card.addEventListener('mousedown', function () {
+                    this.style.transform = 'translateY(-2px) scale(0.98)';
+                });
+
+                card.addEventListener('mouseup', function () {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0px) scale(1)';
+                });
+
+                card.addEventListener('blur', function () {
+                    this.style.transform = 'translateY(0px) scale(1)';
+                });
+            })(cards[j]);
+        }
+    </script>
+</body>
+
+</html>
